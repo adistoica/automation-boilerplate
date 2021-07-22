@@ -12,13 +12,13 @@ pipeline {
 
         stage('Execute') {
             steps {
-               sh "mvn clean test"
+               sh "mvn -Dmaven.test.failure.ignore=true clean test"
             }
         }
 
         stage('Publish Results') {
             steps {
-                step([$class: 'Publisher', reportFilenamePattern: "${workspace}/(path)/testng-results-mod.xml"])
+                step([$class: 'Publisher', reportFilenamePattern: "**/testng-results.xml"])
             }
         }
     }

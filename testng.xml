@@ -5,7 +5,7 @@
             <class name="automation.smoke.RegisterTest"/>
         </classes>
     </test>
-    <test name="LoginTest" group-by-instances="true">
+    <test verbose="2" name="LoginTest" group-by-instances="true">
         <classes>
             <class name="automation.smoke.LoginTest"/>
         </classes>
