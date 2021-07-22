@@ -1,0 +1,19 @@
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd" >
+<suite thread-count="1" verbose="10" name="Web Smoke Suite" parallel="tests">
+    <test verbose="2" name="RegisterTest" group-by-instances="true">
+        <classes>
+            <class name="automation.smoke.RegisterTest"/>
+        </classes>
+    </test>
+    <test name="LoginTest" group-by-instances="true">
+        <classes>
+            <class name="automation.smoke.LoginTest"/>
+        </classes>
+    </test>
+
+    <test verbose="2" name="API Suite" group-by-instances="true">
+        <classes>
+            <class name="api.APITest"/>
+        </classes>
+    </test>
+</suite>
