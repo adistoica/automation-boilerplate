@@ -9,16 +9,28 @@ import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.edge.EdgeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxOptions;
+import org.openqa.selenium.remote.DesiredCapabilities;
+import org.openqa.selenium.remote.RemoteWebDriver;
+import org.openqa.selenium.safari.SafariDriver;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.Properties;
 import java.util.concurrent.TimeUnit;
 
 public class Driver {
+
+    public static final String REMOTE_WEBDRIVER_URL = "http://192.168.1.217:4444/wd/hub";
+
     private static final String BROWSER_CONFIG_FILE = "browser.properties";
     private static final int PAGE_TIME_OUT = 30;
     private static WebDriver driver;
+
+    private static final Logger log = LoggerFactory.getLogger(Driver.class);
 
     private Driver() {
     }
@@ -69,12 +81,25 @@ public class Driver {
                 driver = new EdgeDriver(edgeOptions);
                 break;
 
+            case "safari":
+                driver = new SafariDriver();
+                break;
+
             case "remote":
-                // TODO: handle remote Webdriver
+                DesiredCapabilities capabilities = new DesiredCapabilities();
+                capabilities.setBrowserName("chrome");
+                try {
+                    driver = new RemoteWebDriver(new URL(REMOTE_WEBDRIVER_URL), capabilities);
+                } catch (MalformedURLException e) {
+                    e.printStackTrace();
+                }
+
+                log.info(String.format("Using Remote Webdriver @ %s", REMOTE_WEBDRIVER_URL));
+
                 break;
 
             default:
-                throw new InvalidArgumentException("No browser was selected!");
+                throw new InvalidArgumentException("No browser was selected in the configuration file!");
         }
 
         driver.manage().timeouts().implicitlyWait(PAGE_TIME_OUT, TimeUnit.SECONDS);
