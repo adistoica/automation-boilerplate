@@ -8,15 +8,14 @@ import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.testng.ITestResult;
-import org.testng.annotations.AfterClass;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.AfterSuite;
 import org.testng.annotations.BeforeClass;
 import pages.BasePage;
-import pages.login.LoginPage;
-import pages.login.RegisterPage;
+import pages.LoginPage;
+import pages.RegisterPage;
 import pages.BasePageFactory;
-import pages.login.HomePage;
+import pages.HomePage;
 
 import java.io.ByteArrayInputStream;
 

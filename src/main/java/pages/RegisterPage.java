@@ -1,8 +1,7 @@
-package pages.login;
+package pages;
 
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import pages.BasePage;
 
 import static utils.UrlConstants.BASE_URL;
 import static utils.UrlConstants.ADD_USER_PAGE;

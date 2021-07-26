@@ -35,6 +35,7 @@ public class Driver {
         }
 
         String browser = appProps.getProperty("browser").toLowerCase();
+        String headlessMode = appProps.getProperty("headless").toLowerCase();
 
         switch (browser) {
             case "chrome":
@@ -44,7 +45,10 @@ public class Driver {
                 chromeOptions.addArguments("--ignore-certificate-errors");
                 chromeOptions.addArguments("--no-sandbox");
                 chromeOptions.addArguments("--disable-dev-shm-usage");
-                // option.addArguments("--headless");
+
+                if (headlessMode.equals("true")) {
+                    chromeOptions.addArguments("--headless");
+                }
 
                 driver = new ChromeDriver(chromeOptions);
                 break;
@@ -52,6 +56,10 @@ public class Driver {
             case "firefox":
                 WebDriverManager.firefoxdriver().setup();
                 FirefoxOptions firefoxOptions = new FirefoxOptions();
+                if (headlessMode.equals("true")) {
+                    firefoxOptions.addArguments("-headless");
+                }
+
                 driver = new FirefoxDriver(firefoxOptions);
                 break;
 
