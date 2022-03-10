@@ -1,4 +1,4 @@
-# Automation Boilerplate
+# Test Automation Boilerplate
 
 Test automation boilerplate  
 
