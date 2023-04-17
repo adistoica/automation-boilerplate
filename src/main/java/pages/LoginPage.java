@@ -32,6 +32,6 @@ public class LoginPage extends BasePage {
         this.password.sendKeys(password);
         this.loginButton.click();
 
-        Assert.assertTrue(this.successMessage.getText().contains(SUCCESS_LOGIN_MESSAGE));
+        Assert.assertTrue(this.successMessage.getText().contains(SUCCESS_LOGIN_MESSAGE), "Login was not successful");
     }
 }

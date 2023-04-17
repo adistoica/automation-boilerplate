@@ -2,8 +2,6 @@ package automation;
 
 import driver.Driver;
 import io.qameta.allure.Allure;
-import org.apache.log4j.Level;
-import org.apache.log4j.Logger;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
@@ -19,7 +17,12 @@ import pages.HomePage;
 
 import java.io.ByteArrayInputStream;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 public abstract class BaseTest {
+    private static final Logger LOG = LogManager.getLogger(BaseTest.class);
+
     protected HomePage homePage;
     protected RegisterPage registerPage;
     protected LoginPage loginPage;
@@ -34,7 +37,6 @@ public abstract class BaseTest {
 
     @BeforeClass
     public void setup() {
-        Logger.getRootLogger().setLevel(Level.OFF);
         init();
 
         // instantiate POM pages
